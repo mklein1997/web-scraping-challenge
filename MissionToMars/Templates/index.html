@@ -16,10 +16,50 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
     <h2>Latest Mars News</h2>
+      <h3> {{ collection.news_title }}</h3>
+      <p> {{ collection.news_p }}</p>
     <h2>Featured Mars Image</h2>
-    <img src="https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA17793_hires.jpg" alt="Featured Image">
+    <img src="{{ collection.featured_img }}" alt="Featured Image">
     <h3>Mars Fact Table</h3>
+    <table border="2" class="dataframe"> <thead> 
+      <tr style="text-align: right;"> 
+        <th>Mars - Earth Comparison</th> 
+        <th>Mars</th> <th>Earth</th> 
+        </tr> </thead> <tbody> <tr> 
+        <td>Diameter:</td> <td>6,779 km</td> <td>12,742 km</td> 
+        </tr> <tr><td>Mass:</td> <td>6.39 × 10^23 kg</td> <td>5.97 × 10^24 kg</td> </tr> 
+        <tr><td>Moons:</td> <td>2</td> <td>1</td> </tr> 
+        <tr><td>Distance from Sun:</td> <td>227,943,824 km</td> <td>149,598,262 km</td> </tr> 
+        <tr><td>Length of Year:</td> <td>687 Earth days</td> <td>365.24 days</td> </tr> 
+        <tr><td>Temperature:</td> <td>-87 to -5 °C</td> <td>-88 to 58°C</td> </tr> 
+      </tbody> </table>
     <h2>Mars Hemisphere Photos</h2>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      .column {
+        float: left;
+        width: 28%;
+        padding: 5px;
+      }
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      </style>
+    <div class="row">
+      <div class="column">
+        <img src="{{ collection.hemispheres.0.img_url }}" alt="Cerebus Hemisphere" width="500" height ="500">
+        <img src="{{ collection.hemispheres.1.img_url }}" alt="Schiaparelli Hemisphere" width="500" height ="500">
+      </div>
+      <div class="column">
+        <img src="{{ collection.hemispheres.2.img_url }}" alt="Syrtis Major Hemisphere" width="500" height ="500">
+      <img src="{{ collection.hemispheres.3.img_url }}" alt="Valles Marineris Hemisphere" width="500" height ="500">
+      </div>
+    </div>
   </div>
   </div>
 </body>

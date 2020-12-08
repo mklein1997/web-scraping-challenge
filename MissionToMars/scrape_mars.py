@@ -22,8 +22,8 @@ def scrape():
     news = soup.find_all('div', class_='content_title')
     news[0]
 
-    news_title = [{"news title": "MOXIE Could Help Future Rockets Launch Off Mars"}]
-    news_p = [{"news p":"NASA's Perseverance rover carries a device to convert Martian air into oxygen that,if produced on a larger scale, could be used not just for breathing, but also for fuel."}]
+    news_title =  "MOXIE Could Help Future Rockets Launch Off Mars"
+    news_p = "NASA's Perseverance rover carries a device to convert Martian air into oxygen that,if produced on a larger scale, could be used not just for breathing, but also for fuel."
 
     browser = init_browser()
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
@@ -34,7 +34,7 @@ def scrape():
     img = soup.find_all('div', class_='img')
     img[0]
 
-    featured_img = [{"featured image":'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA17793_hires.jpg'}]
+    featured_img = 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA17793_hires.jpg'
 
     factsurl = 'https://space-facts.com/mars/'
     tables = pd.read_html(factsurl)
@@ -47,8 +47,12 @@ def scrape():
     {"title": "Syrtis Major Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"},
     {"title": "Valles Marineris Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg"},
 ]
-    headlines = news
-    images = img
-    hemispheres = hemisphere_image_urls
+    mars_data = {
+        "news_title":"MOXIE Could Help Future Rockets Launch Off Mars",
+        "news_p": "NASA's Perseverance rover carries a device to convert Martian air into oxygen that,if produced on a larger scale, could be used not just for breathing, but also for fuel.",
+        "featured_img": "https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA17793_hires.jpg",
+        "factshtml": factsdf.to_html(),
+        "hemispheres": hemisphere_image_urls
+    }
 
-    return headlines, images, hemispheres
+    return mars_data

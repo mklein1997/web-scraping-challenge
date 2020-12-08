@@ -8,17 +8,14 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/homework.scrape_mars")
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    mars_data = mongo.db.collection.find_one()
+    return render_template("index.html", collection=mars_data)
 
 
 @app.route("/scrape")
-def scrape(): 
-    headlines = {}
-    images = {}
-    hemispheres = {}
-   
+def scrape():    
     mars_data = scrape_mars.scrape()
-    mongo.insertmany(mars_data, upsert=True)
+    mongo.db.collection.update({}, mars_data, upsert=True)
     return redirect("/", code=302)
     
 
